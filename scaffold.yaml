@@ -1,0 +1,11 @@
+tables:
+  - table_name: product
+    columns:
+      - name: string
+      - price: float
+      - active: boolean
+  - table_name: store
+    columns:
+      - name: string
+      - address: string
+      - email: string

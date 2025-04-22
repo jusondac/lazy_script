@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Check if table_name and at least one column is provided
+if [ -z "$1" ] || [ -z "$2" ]; then
+  echo "Usage: $0 <table_name> <column1:data_type> [<column2:data_type> ...]"
+  exit 1
+fi
+
+table_name="$1"
+shift  # Remove table_name from arguments
+
+# Function to create YAML for a single column
+create_column_yaml() {
+  local column="$1"
+  local name=$(echo "$column" | cut -d':' -f1)
+  local data_type=$(echo "$column" | cut -d':' -f2)
+  echo "      - $name: $data_type"
+}
+
+# Build the columns YAML
+column_yaml=""
+for column in "$@"; do
+  if [ -n "$column_yaml" ]; then
+    column_yaml="$column_yaml
+$(create_column_yaml "$column")"
+  else
+    column_yaml="$(create_column_yaml "$column")"
+  fi
+done
+
+# Create the table YAML block
+table_yaml="- table_name: $table_name
+    columns:
+$column_yaml"
+
+# Append the table YAML block to scaffold.yaml
+echo -e "  $table_yaml" >> scaffold.yaml
+
+echo "Added table '$table_name' with columns to scaffold.yaml"
