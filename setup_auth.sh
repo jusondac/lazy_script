@@ -4,10 +4,15 @@ echo "🛠️ Generating Rails auth setup..."
 
 rails g authentication
 rails db:migrate
+echo "✅ default login system is ready"
+
 rails g controller registrations_controller new
 
 # Create registration view
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/new.html.erb > app/views/registrations/new.html.erb
+echo "✅ default registrations system is ready"
+
+curl -s > app/controllers/sessions_controller.rb
 
 # Patch sessions controller
 cat <<'EOF' > app/controllers/sessions_controller.rb
@@ -33,8 +38,12 @@ class SessionsController < ApplicationController
 end
 EOF
 
-# Inject flash message partial after <body> tag in app/views/layouts/application.html.erb
-sed -i '/<body>/a \
+# Ask user if they want to add flash messages
+read -p "Do you want to add flash message notifications? (y/n) " add_flash
+
+if [[ "$add_flash" =~ ^[Yy]$ ]]; then
+  # Inject flash message partial after <body> tag in app/views/layouts/application.html.erb
+  sed -i '/<body>/a \
     <% if alert || notice %> \
       <div class="w-full fixed top-0 left-0 z-50 flex justify-center pt-10"> \
         <% if alert = flash[:alert] %> \
@@ -45,6 +54,8 @@ sed -i '/<body>/a \
         <% end %> \
       </div> \
     <% end %>' app/views/layouts/application.html.erb
-
-
+  echo "✅ Flash messages have been added"
+else
+  echo "⏩ Skipping flash message setup"
+fi
 echo "✅ Done! Registration and login system are now ready. Thanks for using lazy_script!🎉🥳"
