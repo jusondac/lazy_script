@@ -10,6 +10,8 @@ rails g controller registrations_controller new
 rails g controller home index
 # Create registration view
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/new.html.erb > app/views/registrations/new.html.erb
+# Update registration controller
+curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/registrations_controller.rb > app/controllers/registrations_controller.erb
 echo "✅ default registrations system is ready"
 
 # Ask user if they want to add flash messages
