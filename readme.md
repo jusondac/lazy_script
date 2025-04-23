@@ -7,3 +7,7 @@ curl https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/sc
 ```bash
 sudo curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/generate_scaffolds.rb > gen_scaffold.rb && chmod +x ./gen_scaffold.rb && ./gen_scaffold.rb
 ```
+### scanson
+```bash
+curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/scason
+```
