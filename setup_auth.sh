@@ -27,7 +27,7 @@ fi
 if [[ "$add_flash" =~ ^[Yy]$ ]]; then
   curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/sessions_controller.rb > app/controllers/sessions_controller.rb
   # Inject flash message partial after <body> tag in app/views/layouts/application.html.erb
-  curl -s > app/views/home/index.html.erb
+  curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/index.html.erb > app/views/home/index.html.erb
   echo "✅ Flash messages have been added"
 else
   echo "⏩ Skipping flash message setup"
