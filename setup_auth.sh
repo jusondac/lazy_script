@@ -18,7 +18,7 @@ echo "✅ default registrations system is ready"
 # Inject resource :registration route after resource :session in config/routes.rb
 sed -i '/resource :session/a \  resource :registration, only: %i[new create]' config/routes.rb
 # Add root route after home/index
-sed -i '/get "home index"/a \  root "home#index"' config/routes.rb
+sed -i '/get "home\/index"/a \  root "home#index"' config/routes.rb
 echo "✅ update routes"
 
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/sessions_controller.rb > app/controllers/sessions_controller.rb
