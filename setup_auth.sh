@@ -16,20 +16,13 @@ echo "✅ default registrations system is ready"
 read -p "Do you want to add flash message notifications? (y/n) " add_flash
 
 # Inject resource :registration route after resource :session in config/routes.rb
-if grep -q "resource :session" config/routes.rb; then
-  sed -i '/resource :session/a \  resource :registration, only: %i[new create]' config/routes.rb
-  echo "✅ Added registration routes"
-else
-  echo "⚠️ Could not find 'resource :session' in routes.rb. Please add this manually:"
-  echo "  resource :registration, only: %i[new create]"
-fi
+sed -i '/resource :session/a \  resource :registration, only: %i[new create]' config/routes.rb
+sed -i '/get "home/index"/a \  root "home#index"' config/routes.rb
+echo "✅ update routes"
 
-if [[ "$add_flash" =~ ^[Yy]$ ]]; then
-  curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/sessions_controller.rb > app/controllers/sessions_controller.rb
-  # Inject flash message partial after <body> tag in app/views/layouts/application.html.erb
-  curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/index.html.erb > app/views/home/index.html.erb
-  echo "✅ Flash messages have been added"
-else
-  echo "⏩ Skipping flash message setup"
-fi
+curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/sessions_controller.rb > app/controllers/sessions_controller.rb
+# Inject flash message partial after <body> tag in app/views/layouts/application.html.erb
+curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/index.html.erb > app/views/home/index.html.erb
+echo "✅ Flash messages have been added"
+
 echo "✅ Done! Registration and login system are now ready. Thanks for using lazy_script!🎉🥳"
