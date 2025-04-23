@@ -20,8 +20,10 @@ curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master
 <details>
   <summary>Rails 8 | Setup_auth.sh</summary>
   
+  ### Go to your Rails Root path and run this mf script
+
   ```bash
-  curl -s https://raw.githubusercontent.com/your-username/your-repo/main/setup_auth.sh | bash
+  curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/setup_auth.sh | bash
   ```
 </details>
 
