@@ -7,7 +7,7 @@ rails db:migrate
 rails g controller registrations_controller new
 
 # Create registration view
-curl -s https://raw.githubusercontent.com/your-username/your-repo/main/views/registrations/new.html.erb > app/views/registrations/new.html.erb
+curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/new.html.erb > app/views/registrations/new.html.erb
 
 # Patch sessions controller
 cat <<'EOF' > app/controllers/sessions_controller.rb
@@ -32,5 +32,19 @@ class SessionsController < ApplicationController
   end
 end
 EOF
+
+# Inject flash message partial after <body> tag in app/views/layouts/application.html.erb
+sed -i '/<body>/a \
+    <% if alert || notice %> \
+      <div class="w-full fixed top-0 left-0 z-50 flex justify-center pt-10"> \
+        <% if alert = flash[:alert] %> \
+          <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p> \
+        <% end %> \
+        <% if notice = flash[:notice] %> \
+          <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p> \
+        <% end %> \
+      </div> \
+    <% end %>' app/views/layouts/application.html.erb
+
 
 echo "✅ Done! Registration and login system are now ready. Thanks for using lazy_script!🎉🥳"
