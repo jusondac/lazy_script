@@ -33,4 +33,4 @@ class SessionsController < ApplicationController
 end
 EOF
 
-echo "✅ Done! Registration and login system are now ready."
+echo "✅ Done! Registration and login system are now ready. Thanks for using lazy_script!🎉🥳"
