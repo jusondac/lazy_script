@@ -27,3 +27,13 @@ curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master
   ```
 </details>
 
+<details>
+  <summary>Rails 8 | setup_flowbite.sh</summary>
+  
+  ### Adding flowbite to Rails 8 via Impormap
+  
+  ```bash
+  curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/setup_flowbite.sh | bash
+  ```
+</details>
+
