@@ -25,7 +25,7 @@ INJECT=$(curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/hea
 awk -v html="$INJECT" '/<body>/ { print; print html; next } 1' app/views/layouts/application.html.erb > tmpfile && mv tmpfile app/views/layouts/application.html.erb
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/sessions_controller.rb > app/controllers/sessions_controller.rb
 # Inject flash message partial after <body> tag in app/views/layouts/application.html.erb
-curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/index.html.erb > app/views/home/index.html.erb
+curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/index.html.erb >> app/views/home/index.html.erb
 echo "✅ Flash messages have been added"
 
 echo "✅ Done! Registration and login system are now ready. Thanks for using lazy_script!🎉🥳"
