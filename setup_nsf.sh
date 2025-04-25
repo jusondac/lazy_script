@@ -8,10 +8,12 @@ curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/_sidebar.html.erb > app/views/shared/_sidebar.html.erb
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/_navbar.html.erb > app/views/shared/_navbar.html.erb
 # Insert sidebar render under body tag
-sed -i 's/<body class="bg-white dark:bg-gray-900 text-gray-100">/<body class="bg-white dark:bg-gray-900 text-gray-100">\n    <%= render partial: "shared\/sidebar" %>/' app/views/layouts/application.html.erb
+# Insert navbar render before main container
+sed -i 's/<main class="container mx-auto mt-28 px-5 flex">/<%= render partial: "shared\/navbar" %>\n    <main class="container mx-auto mt-28 px-5 flex">/' app/views/layouts/application.html.erb
+echo "✅ Added navbar render"
+sed -i 's/<main class="container mx-auto mt-28 px-5 flex">/<%= render partial: "shared\/sidebar" %>\n    <main class="container mx-auto mt-28 px-5 flex">/' app/views/layouts/application.html.erb
 echo "✅ Added sidebar render"
-sed -i 's/<body class="bg-white dark:bg-gray-900 text-gray-100">/<body class="bg-white dark:bg-gray-900 text-gray-100">\n    <%= render partial: "shared\/navbar" %>/' app/views/layouts/application.html.erb
-echo "✅ Added sidebar render"
+
 sed -i 's/<%= yield %>/<%= yield %>\n    <%= render "shared/footer" %>/' app/views/layouts/application.html.erb
 echo "✅ Added sidebar render"
 # Add class to body element
