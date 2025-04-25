@@ -43,6 +43,6 @@ curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master
   ### Go to your Rails Root path and run this mf script
   ⚠️ this is for Starter, if you use it in the middle of project, don't blame me ⚠️
   ```bash
-  curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/setup_auth.sh | bash
+  curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/setup_nsf.sh | bash
   ```
 </details>
