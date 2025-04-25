@@ -6,7 +6,7 @@ mkdir -p app/views/shared
 
 echo "🛠️ Setting up Auth"
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/setup_auth.sh | bash
-
+curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/setup_flowbite.sh | bash
 
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/_footer.html.erb > app/views/shared/_footer.html.erb
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/_sidebar.html.erb > app/views/shared/_sidebar.html.erb
