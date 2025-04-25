@@ -13,9 +13,6 @@ sed -i 's/<main class="container mx-auto mt-28 px-5 flex">/<%= render partial: "
 echo "✅ Added navbar render"
 sed -i 's/<main class="container mx-auto mt-28 px-5 flex">/<%= render partial: "shared\/sidebar" %>\n    <main class="container mx-auto mt-28 px-5 flex">/' app/views/layouts/application.html.erb
 echo "✅ Added sidebar render"
-
-sed -i 's/<%= yield %>/<%= yield %>\n    <%= render "shared/footer" %>/' app/views/layouts/application.html.erb
-echo "✅ Added sidebar render"
 # Add class to body element
 sed -i 's/<body>/<body class="bg-white dark:bg-gray-900 text-gray-100">/' app/views/layouts/application.html.erb
 echo "✅ Added dark mode classes to body element"
