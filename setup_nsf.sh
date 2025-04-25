@@ -12,6 +12,8 @@ sed -i 's/<body class="bg-white dark:bg-gray-900 text-gray-100">/<body class="bg
 echo "✅ Added sidebar render"
 sed -i 's/<body class="bg-white dark:bg-gray-900 text-gray-100">/<body class="bg-white dark:bg-gray-900 text-gray-100">\n    <%= render partial: "shared/navbar" %>/' app/views/layouts/application.html.erb
 echo "✅ Added sidebar render"
+sed -i 's/<%= yield %>/<%= yield %>\n    <%= render "shared/footer" %>/' app/views/layouts/application.html.erb
+echo "✅ Added sidebar render"
 # Add class to body element
 sed -i 's/<body>/<body class="bg-white dark:bg-gray-900 text-gray-100">/' app/views/layouts/application.html.erb
 echo "✅ Added dark mode classes to body element"
