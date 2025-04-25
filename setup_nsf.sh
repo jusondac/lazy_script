@@ -10,7 +10,7 @@ curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master
 # Insert sidebar render under body tag
 sed -i 's/<body class="bg-white dark:bg-gray-900 text-gray-100">/<body class="bg-white dark:bg-gray-900 text-gray-100">\n    <%= render partial: "shared\/sidebar" %>/' app/views/layouts/application.html.erb
 echo "✅ Added sidebar render"
-sed -i 's/<body class="bg-white dark:bg-gray-900 text-gray-100">/<body class="bg-white dark:bg-gray-900 text-gray-100">\n    <%= render partial: "shared/navbar" %>/' app/views/layouts/application.html.erb
+sed -i 's/<body class="bg-white dark:bg-gray-900 text-gray-100">/<body class="bg-white dark:bg-gray-900 text-gray-100">\n    <%= render partial: "shared\/navbar" %>/' app/views/layouts/application.html.erb
 echo "✅ Added sidebar render"
 sed -i 's/<%= yield %>/<%= yield %>\n    <%= render "shared/footer" %>/' app/views/layouts/application.html.erb
 echo "✅ Added sidebar render"
