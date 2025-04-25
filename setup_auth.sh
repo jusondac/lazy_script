@@ -21,8 +21,12 @@ sed -i '/resource :session/a \  resource :registration, only: %i[new create]' co
 sed -i '/get "home\/index"/a \  root "home#index"' config/routes.rb
 echo "✅ update routes"
 
-INJECT=$(curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/flash.html.erb)
-awk -v html="$INJECT" '/<body>/ { print; print html; next } 1' app/views/layouts/application.html.erb > tmpfile && mv tmpfile app/views/layouts/application.html.erb
+INJECT_FLASH=$(curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/flash.html.erb)
+# Set INJECT_FLASH variable but don't output it yet
+# It will be used later in the awk command
+
+awk -v html="$INJECT_FLASH" '/<%= yield %>/ { print html; print; next } 1' app/views/layouts/application.html.erb > tmpfile && mv tmpfile app/views/layouts/application.html.erb
+
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/sessions_controller.rb > app/controllers/sessions_controller.rb
 # Inject flash message partial after <body> tag in app/views/layouts/application.html.erb
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/auth_setup/index.html.erb >> app/views/home/index.html.erb
