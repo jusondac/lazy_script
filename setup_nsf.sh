@@ -20,13 +20,13 @@ echo "✅ Added sidebar render"
 # Add class to body element
 INJECT_SCRIPT_HEAD=$(curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/dark_script_head)
 INJECT_SCRIPT_BODY=$(curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/dark_script_body)
-INJECT_SCRIPT_BODY=$(curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/aut_sidebar)
+INJECT_SCRIPT_YIELD=$(curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/aut_sidebar)
 
 # Insert dark mode scripts into head section
 awk -v inject='@custom-variant dark (&:where(.dark, .dark *));' '/@import "tailwindcss";/ { print;  print inject; next } 1' app/assets/tailwind/application.css > tmpfile && mv tmpfile app/assets/tailwind/application.css
 awk -v html="$INJECT_SCRIPT_HEAD" '/<\/head>/ { print html; print; next } 1' app/views/layouts/application.html.erb > tmpfile && mv tmpfile app/views/layouts/application.html.erb
-awk -v html="$INJECT_SCRIPT_HEAD" '/<\/head>/ { print html; print; next } 1' app/views/layouts/application.html.erb > tmpfile && mv tmpfile app/views/layouts/application.html.erb
 awk -v html="$INJECT_SCRIPT_BODY" '/<\/body>/ { print html; print; next } 1' app/views/layouts/application.html.erb > tmpfile && mv tmpfile app/views/layouts/application.html.erb
+awk -v replacement="$INJECT_SCRIPT_YIELD" '{gsub(/<%= yield %>/, replacement)}1' app/views/layouts/application.html.erb > tmpfile && mv tmpfile app/views/layouts/application.html.erb
 
 sed -i 's/<body>/<body class="bg-white dark:bg-gray-900 text-gray-100">/' app/views/layouts/application.html.erb
 sed -i 's/<main class="container mx-auto mt-28 px-5 flex">/<main class="container mx-auto mt-28 px-5 flex pl-24">/' app/views/layouts/application.html.erb
