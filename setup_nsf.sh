@@ -20,7 +20,7 @@ echo "✅ Added sidebar render"
 # Add class to body element
 INJECT_SCRIPT_HEAD=$(curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/dark_script_head)
 INJECT_SCRIPT_BODY=$(curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/dark_script_body)
-INJECT_SCRIPT_YIELD=$(curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/aut_sidebar)
+INJECT_SCRIPT_YIELD=$(curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/auth_sidebar)
 
 # Insert dark mode scripts into head section
 awk -v inject='@custom-variant dark (&:where(.dark, .dark *));' '/@import "tailwindcss";/ { print;  print inject; next } 1' app/assets/tailwind/application.css > tmpfile && mv tmpfile app/assets/tailwind/application.css
