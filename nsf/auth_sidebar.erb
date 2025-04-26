@@ -1,0 +1,9 @@
+<% if Current.user %>
+  <div class="pl-64 w-full">
+    <%= yield %>
+  </div>
+<% else %>
+  <div class="pt-20 w-full">
+    <%= yield %>
+  </div>
+<% end %>
