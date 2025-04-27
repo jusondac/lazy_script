@@ -29,5 +29,5 @@ awk -v html="$INJECT_SCRIPT_BODY" '/<\/body>/ { print html; print; next } 1' app
 awk -v replacement="$INJECT_SCRIPT_YIELD" '{gsub(/<%= yield %>/, replacement)}1' app/views/layouts/application.html.erb > tmpfile && mv tmpfile app/views/layouts/application.html.erb
 
 sed -i 's/<body>/<body class="bg-white dark:bg-gray-900 text-gray-100">/' app/views/layouts/application.html.erb
-sed -i 's/<main class="container mx-auto mt-28 px-5 flex">/<main class="container mx-auto mt-28 px-5 flex pl-24">/' app/views/layouts/application.html.erb
+sed -i 's/<main class="container mx-auto mt-28 px-5 flex">/<main class="mx-auto mt-18 flex">/' app/views/layouts/application.html.erb
 echo "✅ Added dark mode classes to body element"
