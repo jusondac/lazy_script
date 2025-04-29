@@ -6,7 +6,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   def index
     @q = <%= class_name %>.ransack(params[:q])
     @pagy, @<%= plural_table_name %> = pagy(@q.result(distinct: true).order(created_at: :desc))
-    @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
+    @<%= singular_table_name %>_form = <%= orm_class.build(class_name) %>
   end
 
   # GET <%= route_url %>/1
