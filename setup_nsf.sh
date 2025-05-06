@@ -11,6 +11,7 @@ curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/_footer.html.erb > app/views/shared/_footer.html.erb
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/_sidebar.html.erb > app/views/shared/_sidebar.html.erb
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/_navbar.html.erb > app/views/shared/_navbar.html.erb
+curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/_pagination.html.erb > app/views/shared/_pagination.html.erb
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/scafftemplate/pagy.rb > config/initializers/pagy.rb
 
 # Insert sidebar render under body tag
