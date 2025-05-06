@@ -34,9 +34,22 @@ sed -i 's/<body>/<body class="bg-white dark:bg-gray-900 text-gray-100">/' app/vi
 sed -i 's/<main class="container mx-auto mt-28 px-5 flex">/<main class="mx-auto mt-18 flex">/' app/views/layouts/application.html.erb
 
 # copying the template files
-curl -L https://github.com/jusondac/lazy_script/tree/a463b0e3aeb199622c44447fa175984dcdce550f/scafftemplate/templates -o templates.zip
-unzip templates.zip -d lib/
-bundle add pagy ransack --quite
+# Create lib/templates directory if it doesn't exist
+mkdir -p lib/templates
+
+# Download the templates folder from GitHub and move it to lib/templates
+echo "🛠️ Downloading templates from GitHub..."
+git clone --depth=1 --filter=blob:none --sparse https://github.com/jusondac/lazy_script.git temp_repo
+cd temp_repo
+git sparse-checkout set scafftemplate/templates
+cd ..
+cp -r temp_repo/scafftemplate/templates/* lib/templates/
+rm -rf temp_repo
+
+echo "✅ Templates installed in lib/templates"
+# Add required gems silently
+echo "🛠️ Installing necessary gems..."
+bundle add pagy ransack
 
 echo "✅ Setting up template"
 echo "✅ Added dark mode classes to body element"
