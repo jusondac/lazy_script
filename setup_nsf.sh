@@ -36,6 +36,7 @@ sed -i 's/<main class="container mx-auto mt-28 px-5 flex">/<main class="mx-auto 
 # copying the template files
 curl -L https://github.com/jusondac/lazy_script/tree/a463b0e3aeb199622c44447fa175984dcdce550f/scafftemplate/templates -o templates.zip
 unzip templates.zip -d lib/
+bundle add pagy ransack --quite
 
 echo "✅ Setting up template"
 echo "✅ Added dark mode classes to body element"
