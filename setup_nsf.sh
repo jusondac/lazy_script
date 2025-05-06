@@ -11,6 +11,8 @@ curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/_footer.html.erb > app/views/shared/_footer.html.erb
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/_sidebar.html.erb > app/views/shared/_sidebar.html.erb
 curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/nsf/_navbar.html.erb > app/views/shared/_navbar.html.erb
+curl -s https://raw.githubusercontent.com/jusondac/lazy_script/refs/heads/master/scafftemplate/pagy.rb > config/initializers/pagy.rb
+
 # Insert sidebar render under body tag
 # Insert navbar render before main container
 sed -i 's/<main class="container mx-auto mt-28 px-5 flex">/<%= render partial: "shared\/navbar" %>\n    <main class="container mx-auto mt-28 px-5 flex">/' app/views/layouts/application.html.erb
@@ -30,4 +32,10 @@ awk -v replacement="$INJECT_SCRIPT_YIELD" '{gsub(/<%= yield %>/, replacement)}1'
 
 sed -i 's/<body>/<body class="bg-white dark:bg-gray-900 text-gray-100">/' app/views/layouts/application.html.erb
 sed -i 's/<main class="container mx-auto mt-28 px-5 flex">/<main class="mx-auto mt-18 flex">/' app/views/layouts/application.html.erb
+
+# copying the template files
+curl -L https://github.com/jusondac/lazy_script/tree/a463b0e3aeb199622c44447fa175984dcdce550f/scafftemplate/templates -o templates.zip
+unzip templates.zip -d lib/
+
+echo "✅ Setting up template"
 echo "✅ Added dark mode classes to body element"
