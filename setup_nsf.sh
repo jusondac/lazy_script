@@ -50,6 +50,20 @@ echo "✅ Templates installed in lib/templates"
 # Add required gems silently
 echo "🛠️ Installing necessary gems..."
 bundle add pagy ransack
+# Add Pagy::Backend to ApplicationController
+if [ -f app/controllers/application_controller.rb ]; then
+  sed -i '/class ApplicationController < ActionController::Base/a \  include Pagy::Backend' app/controllers/application_controller.rb
+  echo "✅ Added Pagy::Backend to ApplicationController"
+else
+  echo "⚠️ Could not find application_controller.rb"
+fi
+
+if [ -f app/helpers/application_helper.rb ]; then
+  sed -i '/module ApplicationHelper/a \  include Pagy::Frontend' app/helpers/application_helper.rb
+  echo "✅ Added Pagy::Backend to ApplicationHelper"
+else
+  echo "⚠️ Could not find application_helper.rb"
+fi
 
 echo "✅ Setting up template"
 echo "✅ Added dark mode classes to body element"
