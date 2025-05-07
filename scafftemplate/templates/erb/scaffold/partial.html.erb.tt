@@ -1,4 +1,4 @@
-<div id=<%%= dom_id(product) %>>
+<div id=<%%= dom_id(<%= singular_name %> %>) %>>
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
   <% if attribute.attachment? -%>
     <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
